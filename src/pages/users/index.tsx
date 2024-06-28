@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import OrgTree from './components/ОrgTree';
 import ContextMenu from './components/ContextMenu';
@@ -29,6 +29,11 @@ const UsersPage: React.FC = ({ initialTreeData, initialUsers }: any) => {
     const response = await axios.get('/api/users/tree');
     setTree(response.data);
   };
+
+  useEffect(() => {
+    fetchUsers();
+    fetchTree();
+  }, [])
 
   const createUser = async (name: string, supervisorId: number) => {
     await axios.post('/api/users', { name, supervisorId });
