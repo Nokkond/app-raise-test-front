@@ -4,7 +4,6 @@ import OrgTree from './components/ОrgTree';
 import ContextMenu from './components/ContextMenu';
 import EditSupervisorPopup from './components/popups/EditSupervisorPopup';
 import AddUserPopup from './components/popups/AddUserPopup';
-import { getServerSideProps } from '@/utils/dataFetching';
 
 interface User {
   id: number;
@@ -12,9 +11,9 @@ interface User {
   supervisorId: number | null;
 }
 
-const UsersPage: React.FC = ({ initialTreeData, initialUsers }: any) => {
-  const [users, setUsers] = useState<User[]>(initialUsers);
-  const [tree, setTree] = useState<any>(initialTreeData);
+const UsersPage: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [tree, setTree] = useState<any>(null);
   const [contextMenu, setContextMenu] = useState<any>(null);
   const [addUserPopup, setAddUserPopup] = useState(false);
   const [editPopup, setEditPopup] = useState<any>(false);
@@ -112,5 +111,4 @@ const UsersPage: React.FC = ({ initialTreeData, initialUsers }: any) => {
   );
 };
 
-export { getServerSideProps };
 export default UsersPage;
